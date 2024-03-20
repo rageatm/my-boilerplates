@@ -1,7 +1,7 @@
-using Infinitt.Lis.BaseCrud;
+using Jinrage78.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infinitt.Lis.Foo;
+namespace Jinrage78.Foo;
 
 [Route("api/[controller]")]
 [ApiController]

@@ -1,4 +1,4 @@
-## .Net 8 Server boilerplate
+## .Net 8 API Server boilerplate
 
 1. Git clone
 2. Compile
