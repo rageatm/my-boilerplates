@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infinitt.Lis.BaseCrud;
+namespace Jinrage78.Common;
 
 public class BaseCrudController : ControllerBase
 {

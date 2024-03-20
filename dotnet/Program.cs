@@ -1,20 +1,21 @@
-using Infinitt.Lis.BaseCrud;
-using Infinitt.Lis.Foo;
+using Jinrage78.Bar;
+using Jinrage78.Foo;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Logging.ClearProviders();
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddControllers(options =>
 {
     Console.WriteLine("Default output formatters:");
+
     foreach (IOutputFormatter formatter in options.OutputFormatters)
     {
         OutputFormatter? mediaFormatter = formatter as OutputFormatter;
+
         if (mediaFormatter == null)
         {
             Console.WriteLine($"  {formatter.GetType().Name}");
@@ -23,15 +24,18 @@ builder.Services.AddControllers(options =>
         {
             Console.WriteLine("  {0}, Media types: {1}",
               arg0: mediaFormatter.GetType().Name,
-              arg1: string.Join(", ",
-                mediaFormatter.SupportedMediaTypes));
+              arg1: string.Join(", ", mediaFormatter.SupportedMediaTypes));
         }
     }
 });
-builder.Services.AddScoped<IFooService, FooService>();
+builder.Services.AddSingleton<IBarService, BarService>().AddSingleton<IFooService, FooService>();
 builder.Services.AddHealthChecks();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseHttpsRedirection();
+app.MapControllers();
+app.UseHealthChecks(path: "/ping");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -40,7 +44,4 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseHealthChecks(path: "/ping");
-app.MapControllers();
 app.Run();

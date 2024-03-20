@@ -1,9 +1,9 @@
-namespace Infinitt.Lis.BaseCrud;
+namespace Jinrage78.Common;
 
 public interface IBaseCrudService
 {
     // Task CreateAsync();
-    string GetAsync(int id);
+    public string GetAsync(int id);
     // string[]? FindAsync();
     // Task UpdateAsync();
     // Task DeleteAsync();
