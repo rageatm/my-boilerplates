@@ -1,10 +1,15 @@
 using Jinrage78.Bar;
 using Jinrage78.Foo;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using NLog;
+using NLog.Web;
+
+LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();

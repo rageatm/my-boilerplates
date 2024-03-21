@@ -4,15 +4,15 @@ namespace Jinrage78.Common;
 
 public class BaseCrudController : ControllerBase
 {
-    private readonly IBaseCrudService service;
+    private readonly IBaseCrudService _service;
     public BaseCrudController(IBaseCrudService service)
     {
-        this.service = service;
+        _service = service;
     }
 
     [HttpGet]
     public string Get(int id)
     {
-        return service.GetAsync(id);
+        return _service.GetAsync(id);
     }
 }

@@ -7,10 +7,10 @@ namespace Jinrage78.Bar;
 [ApiController]
 public class BarController : BaseCrudController
 {
-    private readonly IBarService service;
+    private readonly IBarService _service;
 
     public BarController(IBarService service) : base(service)
     {
-        this.service = service;
+        _service = service;
     }
 }

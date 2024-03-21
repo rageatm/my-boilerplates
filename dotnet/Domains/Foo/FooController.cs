@@ -7,10 +7,10 @@ namespace Jinrage78.Foo;
 [ApiController]
 public class FooController : BaseCrudController
 {
-    private readonly IFooService service;
+    private readonly IFooService _service;
 
     public FooController(IFooService service) : base(service)
     {
-        this.service = service;
+        _service = service;
     }
 }
